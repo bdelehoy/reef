@@ -10,7 +10,9 @@ public class PersistentAudio : MonoBehaviour {
 	}
 	
 	public void Awake() {
+		// Fade in audio at the very beginning
 		StartCoroutine(FadeIn(GetComponent<AudioSource>(), 1f));
+
 		if (instance != null && instance != this) {
 			Destroy(this.gameObject);
 			return;
