@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public int collected;
     public bool movementAllowed;
+    public bool touchedGround;
+    public bool crowned;
+
 
     public void Awake() {
 		if (instance == null) {
 			instance = this;
 		}
 		else if (instance != this) {
-			Destroy(gameObject);    
+			Destroy(gameObject);
         }
 		DontDestroyOnLoad(gameObject);
     }
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
     private void Start() {
         collected = 0;
         movementAllowed = true;
+        touchedGround = false;
     }
 
     //////// MOVEMENT ////////
@@ -49,4 +54,14 @@ public class GameManager : MonoBehaviour
         collected = 0;
     }
 
+    //////// PLAYER GROUNDING ////////
+    public void playerTouchedGround() {
+        touchedGround = true;
+        //Debug.Log("this should be true: "+touchedGround);
+        // editor glitch: on resetting the scene, touchedGround still shows it's false, even though it's true....
+    }
+
+    public void resetGrounded() {
+        touchedGround = false;
+    }
 }

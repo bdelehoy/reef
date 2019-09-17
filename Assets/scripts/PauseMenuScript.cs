@@ -8,6 +8,8 @@ public class PauseMenuScript : MonoBehaviour {
 
 	public void restartLevel() {
 		gameManager.resetCollected();
+		// don't worry about allowMovement() here because timescale is set to 0 in the player script
+		gameManager.resetGrounded();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 	}
 

@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour {
 
 	private AudioSource auso;
 	public AudioClip[] collectedSFX;
+	public AudioClip exitSound;
 
 
 	private void Start() {
@@ -69,12 +70,23 @@ public class PlayerScript : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Collectible") {
+			// collision with a pearl
 			Destroy(other.gameObject);
 			auso.PlayOneShot(collectedSFX[gameManager.incrementCollected()]);
 		}
 		if(other.gameObject.tag == "Door") {
-			// original door coords: X 150, Y -22.55 (saving for restoring after testing)
+			// collision with the exit
+			// original door coords: X 150.5, Y -22.5 (saving for restoring after testing)
+			gameManager.restrictMovement();
+			auso.PlayOneShot(exitSound);
 			endingScreen.SetActive(true);
 		}
 	}
+
+	public void OnCollisionEnter2D(Collision2D col) {
+		if(col.gameObject.tag == "Ground" && !gameManager.touchedGround) {
+			gameManager.playerTouchedGround();
+		}
+	}
+
 }
