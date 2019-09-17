@@ -5,14 +5,11 @@ using UnityEngine;
 public class PersistentAudio : MonoBehaviour {
 	private static PersistentAudio instance;
 
-	public static PersistentAudio GetInstance(){
+	public static PersistentAudio GetInstance() {
 		return instance;
 	}
 	
 	public void Awake() {
-		// Fade in audio at the very beginning
-		StartCoroutine(FadeIn(GetComponent<AudioSource>(), 1f));
-
 		if (instance != null && instance != this) {
 			Destroy(this.gameObject);
 			return;
@@ -21,6 +18,10 @@ public class PersistentAudio : MonoBehaviour {
 			instance = this;
 		}
 		DontDestroyOnLoad(this.gameObject);
+	}
+
+	private void Start() {
+		StartCoroutine(FadeIn(GetComponent<AudioSource>(), 1f));
 	}
 
 	public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime) {

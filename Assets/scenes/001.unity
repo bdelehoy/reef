@@ -5002,7 +5002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &136909224
 GameObject:
@@ -5272,7 +5272,7 @@ GameObject:
   - component: {fileID: 201120455}
   - component: {fileID: 201120454}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FeedbackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5294,8 +5294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236.6, y: 203}
-  m_SizeDelta: {x: 633.1, y: 435.9}
+  m_AnchoredPosition: {x: 0.000015259, y: 342.95}
+  m_SizeDelta: {x: 1388.5, y: 435.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201120454
 MonoBehaviour:
@@ -5324,13 +5324,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: u got it sport
+  m_Text: Please contact Brandon if you see this text. ty
 --- !u!222 &201120455
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -98893,6 +98893,7 @@ MonoBehaviour:
   jumpFactor: 900
   maxVerticalVelocity: 20
   maxHorizontalVelocity: 7
+  gameManager: {fileID: 926818398}
   pauseMenu: {fileID: 969946439}
   endingScreen: {fileID: 823784404}
   collectedSFX:
@@ -103667,6 +103668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806d82d7bca14c04cb24f702846cffc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 926818398}
+  fbText: {fileID: 201120454}
 --- !u!225 &823784406
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -103763,6 +103766,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &926818397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926818399}
+  - component: {fileID: 926818398}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &926818398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926818397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d49b5192ad1fb84381c7f49aeef4eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  movementAllowed: 1
+--- !u!4 &926818399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926818397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 81.617485, y: -7.917622, z: -818.53125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940691194
 GameObject:
   m_ObjectHideFlags: 0
@@ -103837,7 +103885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940691194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3, y: 0.5, z: 0}
+  m_LocalPosition: {x: -2.41, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104054,6 +104102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b859984edac69c4c9fa75ba859f2484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 926818398}
 --- !u!225 &969946445
 CanvasGroup:
   m_ObjectHideFlags: 0

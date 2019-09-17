@@ -8,15 +8,14 @@ public class PlayerScript : MonoBehaviour {
 	public float maxVerticalVelocity;
 	public float maxHorizontalVelocity;
 
+	public GameManager gameManager;
 	private bool paused;
 	public GameObject pauseMenu;
 
     private Rigidbody2D rb;
 	private Vector2 movementVector;	// so we only have to call AddForce once
 
-	private int collected = 0;
 	public GameObject endingScreen;
-	private bool gameOver;
 
 	private AudioSource auso;
 	public AudioClip[] collectedSFX;
@@ -29,7 +28,6 @@ public class PlayerScript : MonoBehaviour {
 		endingScreen.SetActive(false);
 		Time.timeScale = 1f;
 		paused = false;
-		gameOver = false;
 	}
 
 	private void Update() {
@@ -44,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	private void CheckInput() {
-		if (!gameOver) {
+		if (gameManager.getMovementState()) {
 			if (Input.GetButtonDown("Pause")){
 				if (!paused) {	// if the game isn't paused, make it paused
 					pauseMenu.SetActive(true);
@@ -72,12 +70,10 @@ public class PlayerScript : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Collectible") {
 			Destroy(other.gameObject);
-			// multitasking! index into SFX array at the same time and increment collected:
-			auso.PlayOneShot(collectedSFX[collected++]);
+			auso.PlayOneShot(collectedSFX[gameManager.incrementCollected()]);
 		}
 		if(other.gameObject.tag == "Door") {
 			// original door coords: X 150, Y -22.55 (saving for restoring after testing)
-			gameOver = true;
 			endingScreen.SetActive(true);
 		}
 	}
